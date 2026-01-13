@@ -1,0 +1,26 @@
+.board{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    aspect-ratio: 1 / 1;
+}
+.board > div{
+    border: 1px solid #888;
+}
+
+.qq{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.qq .board{
+    width: 100px;
+}
+
+.aa{
+    padding: 20px;
+}
+.aa .board{
+    width: 100%;
+
+}
