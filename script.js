@@ -25,6 +25,16 @@ function bindEvent(){
             }
         }
     })
+
+    document.getElementById('submitBtn').onclick = () => {
+        const curStep = document.querySelector('input[name="step"]:checked').value;
+        console.log(curStep);
+
+        document.querySelectorAll('#aBoard .active').forEach((activeCell) => {
+            console.log(activeCell);
+
+        })
+    }
 }
 
 function setGame(stage){
