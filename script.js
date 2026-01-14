@@ -14,7 +14,7 @@ setGame(state.stage)
 
 function setGame(stage){
     state.stage = stage;
-    state.totalStep = getRandomInt(1, 10);
+    state.totalStep = getRandomInt(1, 7);
 
     //qq
     getRandomCell(stage);
