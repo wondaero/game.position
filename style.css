@@ -1,6 +1,9 @@
 /* *{
     opacity: 0;
 } */
+html, body{
+    min-height: 100vh;
+}
 body{
     background: linear-gradient(to bottom, #000, navy);
     color: #fff;
@@ -98,6 +101,9 @@ main h3{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.a-board > div.moved{
+    background: red;
 }
 .a-board > div[data-dir]:not([data-dir=""]):after{
     content: '⬆';

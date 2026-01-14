@@ -11,6 +11,7 @@ const state = {
     totalStep: 0
 }
 
+
 bindEvent();
 setGame(state.stage);
 
@@ -28,12 +29,45 @@ function bindEvent(){
 
     document.getElementById('submitBtn').onclick = () => {
         const curStep = document.querySelector('input[name="step"]:checked').value;
-        console.log(curStep);
+
+        if(0 && document.querySelectorAll('#aBoard .active[data-dir]:not([data-dir=""])').length < state.stage){
+            alert('방향을 선택하지 않은 타일 있습니다.');
+            return;
+        }
 
         document.querySelectorAll('#aBoard .active').forEach((activeCell) => {
-            console.log(activeCell);
+            const dir = activeCell.dataset.dir;
 
+            const curRow = activeCell.dataset.row;
+            const curCol = activeCell.dataset.col;
+            if(dir === 'up'){
+                document.querySelector(`#aBoard [data-row="${getArr(state.constValue.numArr, +curRow - +curStep)}"][data-col="${curCol}"]`).classList.add('moved');
+            }else if(dir === 'right'){
+                document.querySelector(`#aBoard [data-row="${curRow}"][data-col="${getArr(state.constValue.numArr, +curCol + +curStep)}"]`).classList.add('moved');
+            }else if(dir === 'down'){
+                document.querySelector(`#aBoard [data-row="${getArr(state.constValue.numArr, +curRow + +curStep)}"][data-col="${curCol}"]`).classList.add('moved');
+            }else if(dir === 'left'){
+                document.querySelector(`#aBoard [data-row="${curRow}"][data-col="${getArr(state.constValue.numArr, +curCol - +curStep)}"]`).classList.add('moved');
+            }
         })
+
+        let matched = true;
+        const step2Cells = document.querySelectorAll('#step2 .sign');
+
+        for(let i = 0; i < step2Cells.length; i++){
+            const activeCell = step2Cells[i];
+            const curRow = activeCell.dataset.row;
+            const curCol = activeCell.dataset.col;
+            const targetCell = document.querySelector(`#aBoard .moved[data-row="${curRow}"][data-col="${curCol}"]`);
+
+            if(!targetCell){
+                matched = false;
+                break;
+            }
+        }
+
+        alert(matched ? '성공' : '실패');
+        window.location.reload();
     }
 }
 
@@ -54,17 +88,16 @@ function getRandomCell(cnt){
         rc: state.constValue.rc[getRandomInt(0, 1)],
         step: state.constValue.step[getRandomInt(0, 1)],
     }));
-    console.log(state.targetCells);
 }
 function cellUI(cells){
     cells.forEach(n => {
-        document.querySelector(`#step1 [data-rows="${n.rowIdx}"][data-cols="${n.colIdx}"]`).classList.add('sign');
-        document.querySelector(`#aBoard [data-rows="${n.rowIdx}"][data-cols="${n.colIdx}"]`).classList.add('active');
+        document.querySelector(`#step1 [data-row="${n.rowIdx}"][data-col="${n.colIdx}"]`).classList.add('sign');
+        document.querySelector(`#aBoard [data-row="${n.rowIdx}"][data-col="${n.colIdx}"]`).classList.add('active');
 
         if(n.rc === 'row'){
-            document.querySelector(`#step2 [data-rows="${getArr(state.constValue.numArr, n.rowIdx + (state.totalStep * n.step))}"][data-cols="${n.colIdx}"]`).classList.add('sign');
+            document.querySelector(`#step2 [data-row="${getArr(state.constValue.numArr, n.rowIdx + (state.totalStep * n.step))}"][data-col="${n.colIdx}"]`).classList.add('sign');
         }else if(n.rc === 'col'){
-            document.querySelector(`#step2 [data-rows="${n.rowIdx}"][data-cols="${getArr(state.constValue.numArr, n.colIdx + (state.totalStep * n.step))}"]`).classList.add('sign');
+            document.querySelector(`#step2 [data-row="${n.rowIdx}"][data-col="${getArr(state.constValue.numArr, n.colIdx + (state.totalStep * n.step))}"]`).classList.add('sign');
         }
     })
 }
