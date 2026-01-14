@@ -1,3 +1,6 @@
+/* *{
+    opacity: 0;
+} */
 .board{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -6,8 +9,11 @@
 }
 .board > div{
     border: 1px solid #888;
+    
 }
-
+.board > div.sign{
+    background: red;
+}
 .qq{
     display: flex;
     align-items: center;
@@ -22,5 +28,8 @@
 }
 .aa .board{
     width: 100%;
+}
 
+.a-board > div.active{
+    background: blue;
 }
