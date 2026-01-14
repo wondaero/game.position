@@ -32,4 +32,23 @@
 
 .a-board > div.active{
     background: blue;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.a-board > div[data-dir="up"]{
+    font-size: 20px;
+}
+.a-board > div[data-dir="up"]:after{
+    content: '⬆';
+}
+.a-board > div[data-dir="right"]:after{
+    content: '➡';
+}
+.a-board > div[data-dir="down"]:after{
+    content: '⬇';
+}
+.a-board > div[data-dir="left"]:after{
+    content: '⬅';
 }

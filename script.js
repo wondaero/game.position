@@ -4,13 +4,28 @@ const state = {
         numArr: [0, 1, 2, 3, 4],
         rc: ['row', 'col'],
         step: [-1, 1],
+        dir: ['up', 'right', 'down', 'left']
     },
     stage: 8,
     targetCells: [],
     totalStep: 0
 }
 
-setGame(state.stage)
+bindEvent();
+setGame(state.stage);
+
+function bindEvent(){
+    document.querySelectorAll('#aBoard > div').forEach(btn => {
+        btn.onclick = () => {
+            if(!btn.classList.contains('active')) return;
+            if(!btn.dataset.dir){
+                btn.dataset.dir = state.constValue.dir[0];
+            }else{
+                btn.dataset.dir = state.constValue.dir[(state.constValue.dir.indexOf(btn.dataset.dir) + 1) % state.constValue.dir.length]
+            }
+        }
+    })
+}
 
 function setGame(stage){
     state.stage = stage;
