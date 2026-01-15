@@ -67,16 +67,26 @@ function bindEvent(){
         }
 
         alert(matched ? '성공' : '실패');
-        window.location.reload();
+        // window.location.reload();
     }
 }
 
 function setGame(stage){
-    state.stage = stage;
+    // state.stage = stage;
+    let stageQuery = window.location.search;
+    stageQuery = stageQuery.split('?');
+    stageQuery = stageQuery.length === 2 ? stageQuery[1].split('=') : [''];
+
+    if(stageQuery[0] === 'stage') state.stage = +stageQuery[1];
+    else state.stage = stage;
+
+    document.getElementById('stage').innerHTML = `Stage ${state.stage}.`;
+    
+
     state.totalStep = getRandomInt(1, 7);
 
     //qq
-    getRandomCell(stage);
+    getRandomCell(state.stage);
     cellUI(state.targetCells);
 }
 
