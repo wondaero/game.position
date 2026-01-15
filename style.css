@@ -8,60 +8,13 @@ body{
     background: linear-gradient(to bottom, #000, navy);
     color: #fff;
 }
-header{
-    background: #fff;
-    padding: 5px 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, .8);
-}
-header h1{
-    height: 100%;
-    margin: 0;
-    color: #000;
-}
 main{
-    padding: 50px 10px 10px;
+    padding: 10px 10px 120px;
 }
-main h3{
-    margin: 0 0 10px;
+main h1{
+    margin: 0 0 20px;
 }
-.step-list{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    margin: 0 0 10px;
-    padding: 0 10px;
-}
-.step-list li{
-    width: 100%;
-    height: 30px;
-}
-.step-list li + li{
-    margin-left: 10px;
-}
-.step-list li input{
-    display: none;
-}
-.step-list li input + strong{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.step-list li input:checked + strong{
-    background: #fff;
-    color: #000;
-}
+
 .board{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -69,17 +22,17 @@ main h3{
     aspect-ratio: 1 / 1;
 }
 .board > div{
-    border: 1px solid #888;
+    border: 1px solid rgba(255, 255, 255, .25);
     
 }
 .board > div.sign{
-    background: red;
+    background: #fff;
 }
 .qq{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .qq > div + div{
     margin-left: 10px;
@@ -96,14 +49,16 @@ main h3{
 }
 
 .a-board > div.active{
-    background: blue;
+    background: darkslateblue;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .a-board > div.moved{
-    background: red;
+    background: #fff;
+    border: 3px solid #f00;
+
 }
 .a-board > div[data-dir]:not([data-dir=""]):after{
     content: '⬆';
@@ -123,20 +78,64 @@ main h3{
     transform: rotate(270deg);
 }
 
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    padding: 10px;
+    background: #fff;
+}
+
+.step-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0 10px;
+    color: #000;
+}
+.step-list li{
+    width: 100%;
+    height: 30px;
+}
+.step-list li + li{
+    margin-left: 10px;
+}
+.step-list li input{
+    display: none;
+}
+.step-list li input + strong{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.step-list li input:checked + strong{
+    background: #000;
+    color: #fff;
+}
 .btns{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .btns button{
-    width: 160px;
-    height: 60px;
+    width: 100px;
+    height: 40px;
     border-radius: 12px;
-    background: #fff;
-    color: #000;
-    font-size: 40px;
+    background: #000;
+    color: #fff;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 0;
+    padding: 0;
 }
